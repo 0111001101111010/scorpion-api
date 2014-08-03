@@ -1,0 +1,29 @@
+{
+  "name": "scorpion-api",
+  "version": "0.0.1",
+  "description": "api for handling amino protein sequences",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stanzheng/scorpion-api.git"
+  },
+  "keywords": [
+    "api",
+    "animo",
+    "acid",
+    "protein",
+    "prediction"
+  ],
+  "author": "stanley zheng",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/stanzheng/scorpion-api/issues"
+  },
+  "homepage": "https://github.com/stanzheng/scorpion-api",
+  "dependencies": {
+    "hapi": "^6.2.2"
+  }
+}
