@@ -25,6 +25,7 @@
   "homepage": "https://github.com/stanzheng/scorpion-api",
   "dependencies": {
     "hapi": "^6.2.2",
-    "mocha": "^1.21.3"
+    "mocha": "^1.21.3",
+    "request": "^2.39.0"
   }
 }
