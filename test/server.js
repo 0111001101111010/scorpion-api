@@ -22,7 +22,6 @@ describe('Request', function(){
       this.timeout(10000);
       request('http://localhost:3000/bob', function (err, res, html){
         if(res.statusCode === 200){
-          console.log(res.body);
           assert.equal(res.body,"Hello, bob!");
           done();
         }
