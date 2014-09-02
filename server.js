@@ -4,9 +4,15 @@ var server = new Hapi.Server(3000);
 var ms = require('mongoskin');
 var db = ms.db('mongodb://localhost:27017/scorpion');
 
+/*
+Data Scheme
+
+
+*/
+
 server.route({
     method: 'GET',
-    path: '/job',
+    path: '/jobs',
     handler: function (request, reply) {
       db.collection('scorpion').find().toArray(function(err, result) {
           if (err) throw err;
@@ -18,7 +24,7 @@ server.route({
 
 server.route({
     method: 'GET',
-    path: '/job/{id}',
+    path: '/jobs/{id}',
     handler: function (request, reply) {
     db.collection('scorpion').find({'_id':ms.ObjectID(request.params.id)}).toArray(function(err, result) {
       if (err) throw err;
@@ -30,7 +36,7 @@ server.route({
 
 server.route({
     method: 'POST',
-    path: '/job',
+    path: '/jobs',
     handler: function (request, reply) {
       console.log(request.payload);
 
