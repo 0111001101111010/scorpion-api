@@ -26,6 +26,8 @@
   "dependencies": {
     "hapi": "^6.2.2",
     "mocha": "^1.21.3",
+    "mongo": "^0.1.0",
+    "mongoskin": "^1.4.4",
     "request": "^2.39.0"
   }
 }
