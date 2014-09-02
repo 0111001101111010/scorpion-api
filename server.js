@@ -7,7 +7,11 @@ server.route({
     method: 'GET',
     path: '/job',
     handler: function (request, reply) {
-        reply(db.scorpion.find());
+      var response = db.collection('scorpion').find().toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+        });
+        reply(response);
     }
 });
 
@@ -16,6 +20,18 @@ server.route({
     path: '/job/{id}',
     handler: function (request, reply) {
         reply('Job, ' + encodeURIComponent(request.params.id) + '!');
+    }
+});
+
+server.route({
+    method: 'POST',
+    path: '/job',
+    handler: function (request, reply) {
+      var response = db.collection('scorpion').find().toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+        });
+        reply(response);
     }
 });
 
