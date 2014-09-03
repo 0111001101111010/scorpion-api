@@ -4,7 +4,7 @@
   "description": "api for handling amino protein sequences",
   "main": "server.js",
   "scripts": {
-    "test": "spec test/server.js"
+    "test": "mocha test/server.js"
   },
   "repository": {
     "type": "git",
