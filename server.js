@@ -1,5 +1,6 @@
 var Hapi = require('hapi');
 var server = new Hapi.Server(process.env.PORT || 3000);
+var Joi = require('joi');
 
 var ms = require('mongoskin');
 var db = ms.db('mongodb://localhost:27017/scorpion');
@@ -49,8 +50,17 @@ server.route({
           reply(result);
         }
       });
+    },
+    config: {
+      validate: {
+        payload: {
+          price: Joi.string().required()
+        }
+      }
     }
 });
+
+
 
 server.start(function () {
     console.log('Server running at: Http://localhost:' + server.info.port);
