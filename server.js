@@ -69,10 +69,16 @@ server.route({
     method: 'PUT',
     path: '/jobs/{id}',
     handler: function (request, reply) {
+      //var prediction callback
+      var prediction = "MYSTRINGHEREOFGENETICS";
     db.collection('scorpion').update({'_id':ms.ObjectID(request.params.id)},
     {
     '$set': {
-         response: "MYSTRINGHEREOFGENETICS",
+         response: {
+             prediction: prediction,
+             time: moment.format(),
+             size: prediction.length
+           },
          completed: true
       }
   },
