@@ -26,7 +26,7 @@ var Job = function Job(obj) {
 var Status = function Status(job) {
   return {
     "job": job,
-    "completed:": false,
+    "completed": false,
     "time": moment().format()
   };
 }
@@ -48,11 +48,32 @@ server.route({
     }
 });
 
+/** Get a specific Job **/
 server.route({
     method: 'GET',
     path: '/jobs/{id}',
     handler: function (request, reply) {
     db.collection('scorpion').find({'_id':ms.ObjectID(request.params.id)}).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      reply(result);
+    });
+    }
+});
+
+/** Update from the server job response**/
+server.route({
+    method: 'PUT',
+    path: '/jobs/{id}',
+    handler: function (request, reply) {
+    db.collection('scorpion').update({'_id':ms.ObjectID(request.params.id)},
+    {
+    '$set': {
+         response: "MYSTRINGHEREOFGENETICS",
+         completed: true
+      }
+  },
+  function(err, result) {
       if (err) throw err;
       console.log(result);
       reply(result);
