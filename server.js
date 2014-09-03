@@ -1,5 +1,5 @@
 var Hapi = require('hapi');
-var server = new Hapi.Server(3000);
+var server = new Hapi.Server(process.env.PORT || 3000);
 
 var ms = require('mongoskin');
 var db = ms.db('mongodb://localhost:27017/scorpion');

@@ -8,11 +8,13 @@ var db = ms.db('mongodb://localhost:27017/scorpion');
 
 describe('Server', function(){
     it('Test Root Path', function(done){
-      this.timeout(10000);
-      request('http://localhost:3000/jobs', function (err, res, html){
+      this.timeout(100000);
+      var url = 'http://localhost:'+ process.env.PORT +'/jobs';
+      console.log(url);
+      request(url, function (err, res, html){
         if(res.statusCode === 200){
           console.log(res.body);
-          assert.equal(res.body,[]);
+          assert.notEqual(res.body,[]);
           done();
         }
     });
