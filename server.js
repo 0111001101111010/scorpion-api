@@ -104,10 +104,10 @@ server.route({
     },
       validate: {
         payload: {
-          title: Joi.string().required(),
-          input_seq: Joi.string().required(),
-          email: Joi.string().required(),
-          fasta_format: Joi.string().optional()
+          title: Joi.string().required().trim(),
+          input_seq: Joi.string().required().trim(),
+          email: Joi.string().email().required().trim(),
+          fasta_format: Joi.boolean().optional()
         }
       }
     }
