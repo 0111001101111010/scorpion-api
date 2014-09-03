@@ -1,10 +1,35 @@
 var Hapi = require('hapi');
 var server = new Hapi.Server(process.env.PORT || 3000);
 var Joi = require('joi');
+var moment = require('moment');
 
 var ms = require('mongoskin');
 var db = ms.db('mongodb://localhost:27017/scorpion');
 
+/*
+Job Object:
+@param title - name of string submission REQ
+@param input_seq - sequence
+@param email - REQ
+@param fasta_format - default false
+*/
+
+var Job = function Job(obj) {
+  return {
+    "title": obj.title,
+    "input_seq":  obj.input_seq,
+    "email": obj.email,
+    "fasta_format": obj.fasta_format,
+  };
+}
+
+var Status = function Status(job) {
+  return {
+    "job": job,
+    "completed:": false,
+    "time": moment().format()
+  };
+}
 /*
 Data Scheme
 
@@ -38,10 +63,12 @@ server.route({
 server.route({
     method: 'POST',
     path: '/jobs',
+    config: {
     handler: function (request, reply) {
       console.log(request.payload);
-
-      db.collection('scorpion').insert(request.payload, function(err, result) {
+      var j = new Job(request.payload);
+      var doc = new Status(j);
+      db.collection('scorpion').insert(doc, function(err, result) {
         if (err) {
           throw err;
         }
@@ -51,10 +78,12 @@ server.route({
         }
       });
     },
-    config: {
       validate: {
         payload: {
-          price: Joi.string().required()
+          title: Joi.string().required(),
+          input_seq: Joi.string().required(),
+          email: Joi.string().required(),
+          fasta_format: Joi.string().optional()
         }
       }
     }
