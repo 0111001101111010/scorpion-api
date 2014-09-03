@@ -4,8 +4,11 @@ var Joi = require('joi');
 var moment = require('moment');
 
 var ms = require('mongoskin');
-var db = ms.db('mongodb://localhost:27017/scorpion');
 
+var mongoUri = process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost:27017/scorpion';
+var db = ms.db(mongoURI);
 /*
 Job Object:
 @param title - name of string submission REQ
