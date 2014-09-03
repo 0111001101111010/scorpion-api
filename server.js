@@ -8,7 +8,7 @@ var ms = require('mongoskin');
 var mongoUri = process.env.MONGOLAB_URI ||
   process.env.MONGOHQ_URL ||
   'mongodb://localhost:27017/scorpion';
-var db = ms.db(mongoURI);
+var db = ms.db(mongoUri);
 /*
 Job Object:
 @param title - name of string submission REQ
