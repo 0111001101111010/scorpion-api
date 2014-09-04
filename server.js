@@ -76,7 +76,7 @@ server.route({
     '$set': {
          response: {
              prediction: prediction,
-             time: moment.format(),
+             time: moment().format(),
              size: prediction.length
            },
          completed: true
