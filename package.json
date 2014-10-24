@@ -26,6 +26,7 @@
   "dependencies": {
     "hapi": "^6.2.2",
     "joi": "^4.6.2",
+    "lodash": "^2.4.1",
     "mocha": "^1.21.3",
     "moment": "^2.8.2",
     "mongo": "^0.1.0",

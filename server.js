@@ -24,7 +24,7 @@ var Job = function Job(obj) {
     "email": obj.email,
     "fasta_format": obj.fasta_format,
   };
-}
+};
 
 var Status = function Status(job) {
   return {
@@ -32,7 +32,7 @@ var Status = function Status(job) {
     "completed": false,
     "time": moment().format()
   };
-}
+};
 /*
 Data Scheme
 
