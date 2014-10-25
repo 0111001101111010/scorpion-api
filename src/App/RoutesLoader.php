@@ -11,6 +11,10 @@ class RoutesLoader
     public function __construct(Application $app)
     {
         $this->app = $app;
+        //**Redirect**/
+        $app->get('/', function () use ($app) {
+            return $app->redirect('/v1/api/notes');
+        });
         $this->instantiateControllers();
 
     }
@@ -25,7 +29,6 @@ class RoutesLoader
     public function bindRoutesToControllers()
     {
         $api = $this->app["controllers_factory"];
-
         $api->get('/notes', "notes.controller:getAll");
         $api->post('/notes', "notes.controller:save");
         $api->put('/notes/{id}', "notes.controller:update");
@@ -34,4 +37,3 @@ class RoutesLoader
         $this->app->mount($this->app["api.endpoint"].'/'.$this->app["api.version"], $api);
     }
 }
-
