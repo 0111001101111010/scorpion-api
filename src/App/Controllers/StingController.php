@@ -48,7 +48,28 @@ class StingController
     {
         return $note = array(
             "name" => $request->request->get("name"),
-            "seq" => $request->request->get("seq")
+            "seq" => $request->request->get("seq"),
+            "title" => $request->request->get("title"),
+            "email" => $request->request->get("email"),
+            "time" => date('Y-m-d H:i:s')
         );
     }
 }
+
+/**var Job = function Job(obj) {
+  return {
+    "title": obj.title,
+    "input_seq":  obj.input_seq,
+    "email": obj.email,
+    "fasta_format": obj.fasta_format,
+  };
+};
+
+var Status = function Status(job) {
+  return {
+    "job": job,
+    "completed": false,
+    "time": moment().format()
+  };
+};
+**/

@@ -6,7 +6,10 @@ CREATE TABLE notes (
 CREATE TABLE Sting (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     seq VARCHAR NOT NULL,
-    name VARCHAR NOT NULL
+    name VARCHAR NOT NULL,
+    title VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    time  VARCHAR NOT NULL
 );
 
 insert into notes (note) values('one');
