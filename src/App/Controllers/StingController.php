@@ -51,25 +51,8 @@ class StingController
             "seq" => $request->request->get("seq"),
             "title" => $request->request->get("title"),
             "email" => $request->request->get("email"),
-            "time" => date('Y-m-d H:i:s')
+            "time" => date('Y-m-d H:i:s'),
+            "pred_status" => false
         );
     }
 }
-
-/**var Job = function Job(obj) {
-  return {
-    "title": obj.title,
-    "input_seq":  obj.input_seq,
-    "email": obj.email,
-    "fasta_format": obj.fasta_format,
-  };
-};
-
-var Status = function Status(job) {
-  return {
-    "job": job,
-    "completed": false,
-    "time": moment().format()
-  };
-};
-**/

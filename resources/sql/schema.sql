@@ -9,7 +9,10 @@ CREATE TABLE Sting (
     name VARCHAR NOT NULL,
     title VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
-    time  VARCHAR NOT NULL
+    time  VARCHAR NOT NULL,
+    pred_status BOOLEAN,
+    pred_seq  VARCHAR,
+    pred_time  VARCHAR
 );
 
 insert into notes (note) values('one');
