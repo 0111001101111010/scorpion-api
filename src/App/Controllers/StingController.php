@@ -9,30 +9,30 @@ use Symfony\Component\HttpFoundation\Response;
 class StingController
 {
 
-    protected $notesService;
+    protected $stingService;
 
     public function __construct($service)
     {
-        $this->notesService = $service;
+        $this->stingService = $service;
     }
 
     public function getAll()
     {
-        return new JsonResponse($this->notesService->getAll());
+        return new JsonResponse($this->stingService->getAll());
     }
 
     public function save(Request $request)
     {
 
         $note = $this->getDataFromRequest($request);
-        return new JsonResponse(array("id" => $this->notesService->save($note)));
+        return new JsonResponse(array("id" => $this->stingService->save($note)));
 
     }
 
     public function update($id, Request $request)
     {
         $note = $this->getDataFromRequest($request);
-        $this->notesService->update($id, $note);
+        $this->stingService->update($id, $note);
         return new JsonResponse($note);
 
     }
@@ -40,13 +40,14 @@ class StingController
     public function delete($id)
     {
 
-        return new JsonResponse($this->notesService->delete($id));
+        return new JsonResponse($this->stingService->delete($id));
 
     }
 
     public function getDataFromRequest(Request $request)
     {
         return $note = array(
+            "name" => $request->request->get("name"),
             "seq" => $request->request->get("seq")
         );
     }
