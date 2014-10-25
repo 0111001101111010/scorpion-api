@@ -11,10 +11,6 @@ class RoutesLoader
     public function __construct(Application $app)
     {
         $this->app = $app;
-        //**Redirect**/
-        $app->get('/', function () use ($app) {
-            return $app->redirect('api/v1/notes');
-        });
         $this->instantiateControllers();
 
     }
@@ -34,15 +30,15 @@ class RoutesLoader
         //main controller
         $api = $this->app["controllers_factory"];
       //Notes
-        $api->get('/notes', "notes.controller:getAll");
-        $api->post('/notes', "notes.controller:save");
-        $api->put('/notes/{id}', "notes.controller:update");
-        $api->delete('/notes/{id}', "notes.controller:delete");
+        $api->get('notes', "notes.controller:getAll");
+        $api->post('notes', "notes.controller:save");
+        $api->put('notes/{id}', "notes.controller:update");
+        $api->delete('notes/{id}', "notes.controller:delete");
 
         //Sting
-        $api->get('/sting', "sting.controller:getAll");
-        $api->post('/sting', "sting.controller:save");
-        $api->put('/sting/{id}', "sting.controller:update");
+        $api->get('sting', "sting.controller:getAll");
+        $api->post('sting', "sting.controller:save");
+        $api->put('sting/{id}', "sting.controller:update");
         $api->delete('/sting/{id}', "sting.controller:delete");
 
 
