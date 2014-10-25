@@ -13,7 +13,7 @@ class RoutesLoader
         $this->app = $app;
         //**Redirect**/
         $app->get('/', function () use ($app) {
-            return $app->redirect('/api/v1/notes');
+            return $app->redirect('api/v1/notes');
         });
         $this->instantiateControllers();
 
