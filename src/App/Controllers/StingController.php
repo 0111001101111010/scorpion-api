@@ -24,16 +24,16 @@ class StingController
     public function save(Request $request)
     {
 
-        $note = $this->getDataFromRequest($request);
-        return new JsonResponse(array("id" => $this->stingService->save($note)));
+        $job = $this->getDataFromRequest($request);
+        return new JsonResponse(array("id" => $this->stingService->save($job)));
 
     }
 
     public function update($id, Request $request)
     {
-        $note = $this->getDataFromRequest($request);
-        $this->stingService->update($id, $note);
-        return new JsonResponse($note);
+        $job = $this->getDataFromRequest($request);
+        $this->stingService->update($id, $job);
+        return new JsonResponse($job);
 
     }
 
@@ -46,7 +46,7 @@ class StingController
 
     public function getDataFromRequest(Request $request)
     {
-        return $note = array(
+        return $job = array(
             "name" => $request->request->get("name"),
             "seq" => $request->request->get("seq"),
             "title" => $request->request->get("title"),
