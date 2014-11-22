@@ -11,6 +11,7 @@ CREATE TABLE Sting (
     email VARCHAR NOT NULL,
     time  VARCHAR NOT NULL,
     pred_status BOOLEAN,
+    pred_weights VARCHAR,
     pred_seq  VARCHAR,
     pred_time  VARCHAR
 );
