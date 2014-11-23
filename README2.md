@@ -30,6 +30,23 @@ From the root folder run the following command to run tests.
 
     vendor/bin/phpunit
 
+####Sting Relations
+MYSQL Table
+```
+CREATE TABLE Sting (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    seq VARCHAR NOT NULL,
+    name VARCHAR NOT NULL,
+    title VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    time  VARCHAR NOT NULL,
+    pred_status BOOLEAN,
+    pred_weights VARCHAR,
+    pred_seq  VARCHAR,
+    pred_time  VARCHAR
+);
+```
+
 
 ####What you will get
 The api will respond to
