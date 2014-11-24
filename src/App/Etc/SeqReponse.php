@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 $foo = array (
@@ -35,13 +34,5 @@ function buildSequence($valid_chars, $length)
     // return our finished random string
     return $random_string;
 }
-$mySeq= buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($foo["seq"]));
-echo buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($foo["seq"]));
-$mySeqSize = buildSequence("5678", strlen($foo["seq"]));
-
-$foo["pred_seq"] = $mySeq;
-$foo["pred_weights"] = $mySeqSize;
-$foo["pred_status"]  = true;
-var_dump($foo);
 
 ?>
