@@ -4,7 +4,7 @@ namespace App\Controllers;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+include ("../src/App/Etc/SeqReponse.php");
 
 class StingController
 {
@@ -25,6 +25,14 @@ class StingController
     {
 
         $job = $this->getDataFromRequest($request);
+
+        //valid sequence
+        $mySeq= buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($job["seq"]));
+        $mySeqSize = buildSequence("5678", strlen($job["seq"]));
+        $job["pred_seq"] = $mySeq;
+        $job["pred_weights"] = $mySeqSize;
+        $job["pred_status"]  = true;
+
         return new JsonResponse(array("id" => $this->stingService->save($job)));
 
     }
