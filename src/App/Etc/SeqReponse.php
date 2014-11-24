@@ -1,104 +1,30 @@
-
 #!/usr/bin/php
 <?php
-/*
-Class MAKEpasswd:
-Make password from selected characters in a string.
-required arguments:
-length of a password and characters to use in a password.
-
-1 = a - z
-2 = A - Z
-3 = a - z and A - Z
-4 = a - z, A - Z and 0 - 9
-5 = a - z, A - Z, 0 - 9 and chars !#$%&()
-
-usage:
-Make 10 passwords that is 8 characters long and
-includes characters a - z, A - Z, 0 - 9 and !#$%&()
-
-$numTimes = 0;
-$example = new MAKEpasswd(8,5);
-while($numTimes < 10)
+function buildSequence($valid_chars, $length)
 {
-       print($example->makePassword() . "<br>\n");
-       $numTimes++;
-}
-*/
-class MAKEpasswd
-{
-       var $intLength;
-       var $pool;
+    // start with an empty random string
+    $random_string = "";
 
-       function MAKEpasswd($iLength, $iChars)
-       {
-               $this->intLength = $iLength;
-               $this->pool = $this->getPool($iChars);
-       }
-       function getPool($iChars)
-       {
-               switch($iChars)
-               {
-                       case 1: /* a - z */
-                               for($i = 0x61; $i <= 0x7A; $i++)
-                               {
-                                       $str .= chr($i);
-                               }
-                               return $str;
-                               break;
-                       case 2: /* A - Z */
-                               for($i = 0x41; $i <= 0x5A; $i++)
-                               {
-                                       $str .= chr($i);
-                               }
-                               return $str;
-                               break;
-                       case 3: /* a - z and A - Z */
-                               $str = $this->getPool(1);
-                               $str .= $this->getPool(2);
-                               return $str;
-                               break;
-                       case 4: /* 0 - 9, A - Z and a - z */
-                           $str = $this->getPool(3); // get chars a - z and A - Z first
-                               for($i = 0x30; $i <= 0x39; $i++)
-                               {
-                                       $str .= chr($i); // add chars 0 - 9;
-                               }
-                               return $str;
-                               break;
-                       case 5:
-                               /* This will add these chars into the string !#$%&() */
-                               $str = $this->getPool(4);
-                               for($i = 0x21; $i < 0x29; $i++)
-                               {
-                                       if($i == 0x22 || $i == 0x27) // Exclude characters " and '
-                                       {
-                                               continue;
-                                       }
-                                       $str .= chr($i);
-                               }
-                               return $str;
-                               break;
-               }
-       }
-       function makePassword()
-       {
-               srand ((double) microtime() * 1000000);
-               $str="";
-               while(strlen($str)< $this->intLength)
-               {
-                       $str.=$this->pool[rand()%strlen($this->pool)];
-               }
-               return $str ;
-       }
-}
+    // count the number of chars in the valid chars string so we know how many choices we have
+    $num_valid_chars = strlen($valid_chars);
 
-$numTimes = 0;
-$example = new MAKEpasswd(8,5);
-while($numTimes < 10)
-{
-       print($example->makePassword() . "<br>\n");
-       $numTimes++;
+    // repeat the steps until we've created a string of the right length
+    for ($i = 0; $i < $length; $i++)
+    {
+        // pick a random number from 1 up to the number of valid chars
+        $random_pick = mt_rand(1, $num_valid_chars);
+
+        // take the random character out of the string of valid chars
+        // subtract 1 from $random_pick because strings are indexed starting at 0, and we started picking at 1
+        $random_char = $valid_chars[$random_pick-1];
+
+        // add the randomly-chosen char onto the end of our string so far
+        $random_string .= $random_char;
+    }
+
+    // return our finished random string
+    return $random_string;
 }
+echo buildSequence("ACDEFGHIKLMNPQRSTVWY",80);
 
 ?>
