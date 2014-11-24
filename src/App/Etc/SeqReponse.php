@@ -1,5 +1,15 @@
 #!/usr/bin/php
 <?php
+
+$foo = array (
+  "name"=>"animal",
+  "seq"=>"acddaaeflnlsdaanaqwewqeqwetyrrfg",
+  "title"=>"Dog",
+  "email"=>"szhen002@odu.edu",
+  "time"=>"2014-11-24 00:56:26",
+  "pred_status"=> false
+);
+
 function buildSequence($valid_chars, $length)
 {
     // start with an empty random string
@@ -25,6 +35,13 @@ function buildSequence($valid_chars, $length)
     // return our finished random string
     return $random_string;
 }
-echo buildSequence("ACDEFGHIKLMNPQRSTVWY",80);
+$mySeq= buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($foo["seq"]));
+echo buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($foo["seq"]));
+$mySeqSize = buildSequence("5678", strlen($foo["seq"]));
+
+$foo["pred_seq"] = $mySeq;
+$foo["pred_weights"] = $mySeqSize;
+$foo["pred_status"]  = true;
+var_dump($foo);
 
 ?>
