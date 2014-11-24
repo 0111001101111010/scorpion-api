@@ -32,6 +32,7 @@ class StingController
         $job["pred_seq"] = $mySeq;
         $job["pred_weights"] = $mySeqSize;
         $job["pred_status"]  = true;
+        $job["pred_time"] = date('Y-m-d H:i:s');
 
         return new JsonResponse(array("id" => $this->stingService->save($job)));
 
@@ -60,7 +61,6 @@ class StingController
             "title" => $request->request->get("title"),
             "email" => $request->request->get("email"),
             "time" => date('Y-m-d H:i:s'),
-            "pred_status" => false
         );
     }
 }
