@@ -1,14 +1,5 @@
 <?php
 
-$foo = array (
-  "name"=>"animal",
-  "seq"=>"acddaaeflnlsdaanaqwewqeqwetyrrfg",
-  "title"=>"Dog",
-  "email"=>"szhen002@odu.edu",
-  "time"=>"2014-11-24 00:56:26",
-  "pred_status"=> false
-);
-
 function buildSequence($valid_chars, $length)
 {
     // start with an empty random string
