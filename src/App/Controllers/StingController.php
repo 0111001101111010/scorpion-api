@@ -27,21 +27,21 @@ class StingController
         $job = $this->getDataFromRequest($request);
 
         if (!$this->validate($job)){
-
+          $error = array();
           if (empty($job["title"])) {
-            $resp = "empty title";
+            $error["title"] = "empty title";
           }
-          else if (empty($job["seq"])) {
-            $resp = "empty seq";
+          if (empty($job["seq"])) {
+            $error["seq"] = "empty seq";
           }
-          else if (empty($job["name"])) {
-            $resp = "empty name";
+          if (empty($job["name"])) {
+            $error["name"] = "empty name";
           }
-          else if (empty($job["email"])) {
-            $resp = "empty email";
+          if (empty($job["email"])) {
+            $error["email"] = "empty email";
           }
 
-          return new JsonResponse(Array("error:"=>$resp));
+          return new JsonResponse(Array("error:"=>$error));
           die();
         }
         else {
