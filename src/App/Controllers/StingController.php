@@ -16,6 +16,16 @@ class StingController
         $this->stingService = $service;
     }
 
+    function validSeq($value)
+    {
+      if (!preg_match('/[^ACDEFGHIKLMNPQRSTVWY]/', $value, $error)){
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
     public function getAll()
     {
         return new JsonResponse($this->stingService->getAll());
@@ -33,6 +43,9 @@ class StingController
           }
           if (empty($job["seq"])) {
             $error["seq"] = "empty seq";
+          }
+          else if (!$this->validSeq($job["seq"])){
+            $error["seq"] = "invalid characters in string";
           }
           if (empty($job["name"])) {
             $error["name"] = "empty name";
