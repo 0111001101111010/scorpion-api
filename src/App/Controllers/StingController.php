@@ -26,16 +26,35 @@ class StingController
 
         $job = $this->getDataFromRequest($request);
 
-        //valid sequence
-        $mySeq= buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($job["seq"]));
-        $mySeqSize = buildSequence("5678", strlen($job["seq"]));
-        $job["pred_seq"] = $mySeq;
-        $job["pred_weights"] = $mySeqSize;
-        $job["pred_status"]  = true;
-        $job["pred_time"] = date('Y-m-d H:i:s');
+        if (!$this->validate($job)){
 
-        return new JsonResponse(array("id" => $this->stingService->save($job)));
+          if (empty($job["title"])) {
+            $resp = "empty title";
+          }
+          else if (empty($job["seq"])) {
+            $resp = "empty seq";
+          }
+          else if (empty($job["name"])) {
+            $resp = "empty name";
+          }
+          else if (empty($job["email"])) {
+            $resp = "empty email";
+          }
 
+          return new JsonResponse(Array("error:"=>$resp));
+          die();
+        }
+        else {
+          //valid sequence
+          $mySeq= buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($job["seq"]));
+          $mySeqSize = buildSequence("5678", strlen($job["seq"]));
+          $job["pred_seq"] = $mySeq;
+          $job["pred_weights"] = $mySeqSize;
+          $job["pred_status"]  = true;
+          $job["pred_time"] = date('Y-m-d H:i:s');
+
+          return new JsonResponse(array("id" => $this->stingService->save($job)));
+        }
     }
 
     public function update($id, Request $request)
@@ -62,5 +81,9 @@ class StingController
             "email" => $request->request->get("email"),
             "time" => date('Y-m-d H:i:s'),
         );
+    }
+    public function validate($job)
+    {
+      return !in_array("",$job);
     }
 }
