@@ -37,7 +37,7 @@ class StingController
         $job = $this->getDataFromRequest($request);
 
         if (!$this->validate($job)){
-          $error = array();
+          $error = array("general"=>"request has one or more incorrect or missing parameters");
 
           // check title condition
           if (empty($job["title"])) {
@@ -73,7 +73,6 @@ class StingController
           }
 
           return new JsonResponse(Array("error"=>$error));
-          die();
         }
         else {
           //valid sequence
@@ -114,7 +113,7 @@ class StingController
             "time" => date('Y-m-d H:i:s'),
         );
     }
-    /**Checks if any parameters are blank**/
+    /**Checks if any parameters are blank quick check**/
 
     public function validate($job)
     {
