@@ -78,7 +78,7 @@ class StingController
         else {
           //valid sequence
           $mySeq= buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($job["seq"])*3);
-          $mySeqSize = buildSequence("5678", strlen($job["seq"]));
+          $mySeqSize = buildSequence("5678", strlen($job["seq"])*3);
           $job["pred_seq"] = $mySeq;
           $job["pred_weights"] = $mySeqSize;
           $job["pred_status"]  = true;
@@ -114,6 +114,8 @@ class StingController
             "time" => date('Y-m-d H:i:s'),
         );
     }
+    /**Checks if any parameters are blank**/
+
     public function validate($job)
     {
       return !in_array("",$job);
