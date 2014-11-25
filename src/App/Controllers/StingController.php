@@ -45,7 +45,12 @@ class StingController
             $error["seq"] = "empty seq";
           }
           else if (!$this->validSeq($job["seq"])){
-            $error["seq"] = "invalid characters in string";
+            if (!empty($job["sanitize"])) {
+              $error["seq"] = "sanitization was tried";
+            }
+            else {
+              $error["seq"] = "invalid characters in string.(Pass parameter 'sanitize': true to attempt cleanup, default is false. This will removed invalid characters and upcase where possible)";
+            }
           }
           else if ((strlen($job["seq"])>40)){
             $error["seq"] = "invalid characters length: >=40 required";
@@ -58,12 +63,12 @@ class StingController
             $error["email"] = "empty email";
           }
 
-          return new JsonResponse(Array("error:"=>$error));
+          return new JsonResponse(Array("error"=>$error));
           die();
         }
         else {
           //valid sequence
-          $mySeq= buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($job["seq"]));
+          $mySeq= buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($job["seq"])*3);
           $mySeqSize = buildSequence("5678", strlen($job["seq"]));
           $job["pred_seq"] = $mySeq;
           $job["pred_weights"] = $mySeqSize;
@@ -96,6 +101,7 @@ class StingController
             "seq" => $request->request->get("seq"),
             "title" => $request->request->get("title"),
             "email" => $request->request->get("email"),
+            "sanitize" => $request->request->get('sanitize'),
             "time" => date('Y-m-d H:i:s'),
         );
     }
