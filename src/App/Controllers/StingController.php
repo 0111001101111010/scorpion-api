@@ -38,24 +38,33 @@ class StingController
 
         if (!$this->validate($job)){
           $error = array();
+
+          // check title condition
           if (empty($job["title"])) {
             $error["title"] = "empty title";
           }
+
+          //do sequence parsing
           if (empty($job["seq"])) {
             $error["seq"] = "empty seq";
           }
-          else if (!$this->validSeq($job["seq"])){
-            if (!empty($job["sanitize"])) {
-              $error["seq"] = "sanitization was tried";
-            }
-            else {
-              $error["seq"] = "invalid characters in string.(Pass parameter 'sanitize': true to attempt cleanup, default is false. This will removed invalid characters and upcase where possible)";
-            }
+          else if (!empty($job["sanitize"])) {
+            $error["seq"] = "sanitization was tried";
+            $error["prev"] = $job["seq"];
+            $error["post"] = $job["seq"];
+
+            //sanitize
+            $job["seq"] = $job["seq"];
+            echo $job["seq"];
           }
-          else if ((strlen($job["seq"])>40)){
+          else if (!$this->validSeq($job["seq"])){
+              $error["seq"] = "invalid characters in string.(Pass parameter 'sanitize': true to attempt cleanup, default is false. This will removed invalid characters and upcase where possible)";
+          }
+          else if ((strlen($job["seq"])<40)){
             $error["seq"] = "invalid characters length: >=40 required";
           }
 
+          // check the name of the sequence
           if (empty($job["name"])) {
             $error["name"] = "empty name";
           }
