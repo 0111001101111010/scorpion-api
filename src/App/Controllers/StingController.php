@@ -46,7 +46,6 @@ class StingController
           }
           else if (!$this->validSeq($job["seq"])){
             $error["seq"] = "invalid characters in string";
-            echo strlen($job["seq"])<40;
           }
           else if ((strlen($job["seq"])>40)){
             $error["seq"] = "invalid characters length: >=40 required";
