@@ -62,7 +62,7 @@ class StingController
             $error["email"] = "empty email";
           }
 
-          return new JsonResponse(Array("error"=>$error));
+          return new JsonResponse(Array("error"=>$error, "submitted"=>$job));
         }
         else {
           //valid sequence
