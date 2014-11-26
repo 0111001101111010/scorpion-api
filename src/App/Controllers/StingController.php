@@ -35,7 +35,6 @@ class StingController
     {
 
         $job = $this->getDataFromRequest($request);
-
         if (!$this->validate($job)){
           $error = array("general"=>"request has one or more incorrect or missing parameters");
 
@@ -47,15 +46,6 @@ class StingController
           //do sequence parsing
           if (empty($job["seq"])) {
             $error["seq"] = "empty seq";
-          }
-          else if (!empty($job["sanitize"])) {
-            $error["seq"] = "sanitization was tried";
-            $error["prev"] = $job["seq"];
-            $error["post"] = $job["seq"];
-
-            //sanitize
-            $job["seq"] = $job["seq"];
-            echo $job["seq"];
           }
           else if (!$this->validSeq($job["seq"])){
               $error["seq"] = "invalid characters in string.(Pass parameter 'sanitize': true to attempt cleanup, default is false. This will removed invalid characters and upcase where possible)";
@@ -117,6 +107,18 @@ class StingController
 
     public function validate($job)
     {
+      if ($job["sanitize"]===true) {
+        $error["seq"] = "sanitization was tried";
+        $error["prev"] = $job["seq"];
+        $error["post"] = $job["seq"];
+
+        //sanitize
+        $job["seq"] = $job["seq"];
+        echo $job["seq"];
+      }
+      else {
+        $job["sanitize"]="";
+      }
       return !in_array("",$job);
     }
 }
