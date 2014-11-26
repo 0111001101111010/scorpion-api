@@ -35,7 +35,9 @@ class StingController
     {
 
         $job = $this->getDataFromRequest($request);
-        if (!$this->validate($job)){
+        $check = $this->validate($job)["evaluate"];
+        $job = $this->validate($job)["newjob"];
+        if (!($this->validate($job)["evaluate"])){
           $error = array("general"=>"request has one or more incorrect or missing parameters");
 
           // check title condition
@@ -92,14 +94,14 @@ class StingController
 
     }
 
-    public function getDataFromRequest(Request $request)
+    public function getDataFromRequest(Request $payload)
     {
         return $job = array(
-            "name" => $request->request->get("name"),
-            "seq" => $request->request->get("seq"),
-            "title" => $request->request->get("title"),
-            "email" => $request->request->get("email"),
-            "sanitize" => $request->request->get('sanitize'),
+            "name" => $payload->request->get("name"),
+            "seq" => $payload->request->get("seq"),
+            "title" => $payload->request->get("title"),
+            "email" => $payload->request->get("email"),
+            "sanitize" => $payload->request->get('sanitize'),
             "time" => date('Y-m-d H:i:s'),
         );
     }
@@ -107,18 +109,29 @@ class StingController
 
     public function validate($job)
     {
-      if ($job["sanitize"]===true) {
-        $error["seq"] = "sanitization was tried";
-        $error["prev"] = $job["seq"];
-        $error["post"] = $job["seq"];
-
+        //echo $job["seq"];
+      if ($job["sanitize"] === "yes") {
+        // $error["seq"] = "sanitization was tried";
+        // $error["prev"] = $job["seq"];
+        // $error["post"] = $job["seq"];
         //sanitize
-        $job["seq"] = $job["seq"];
-        echo $job["seq"];
+        $job["seq"] = $this->clean($job["seq"]);
+        //echo $job["seq"];
       }
       else {
-        $job["sanitize"]="";
+
+
+        $job["sanitize"] = "";
       }
-      return !in_array("",$job);
+
+      return array("evaluate"=>!in_array("", $job), "newjob"=> $job);
+    }
+    public function clean($string)
+    { //echo "cleaning";
+      $pattern = '/[^ACDEFGHIKLMNPQRSTVWY]/';
+      $cleaned = preg_replace($pattern, "", $string);
+      echo $cleaned;
+      # code...
+      return $cleaned;
     }
 }
