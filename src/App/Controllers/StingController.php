@@ -130,7 +130,7 @@ class StingController
     { //echo "cleaning";
       $pattern = '/[^ACDEFGHIKLMNPQRSTVWY]/';
       $cleaned = preg_replace($pattern, "", $string);
-      echo $cleaned;
+      //echo $cleaned;
       # code...
       return $cleaned;
     }
