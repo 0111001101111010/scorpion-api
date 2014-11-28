@@ -4,8 +4,18 @@ namespace App\Controllers;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-include ("../src/App/Etc/SeqReponse.php");
 
+/**
+ * Sting REST API End point
+ *
+ * A *description*, that can span multiple lines, to go _in-depth_ into the details of this element
+ * and to provide some background information or textual references.
+ *
+ * @param string $myArgument With a *description* of this argument, these may also
+ *    span multiple lines.
+ *
+ * @return void
+ */
 class StingController
 {
 
@@ -68,8 +78,8 @@ class StingController
         }
         else {
           //valid sequence
-          $mySeq= buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($job["seq"])*3);
-          $mySeqSize = buildSequence("5678", strlen($job["seq"])*3);
+          $mySeq= $this->buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($job["seq"])*3);
+          $mySeqSize = $this->buildSequence("5678", strlen($job["seq"])*3);
           $job["pred_seq"] = $mySeq;
           $job["pred_weights"] = $mySeqSize;
           $job["pred_status"]  = true;
@@ -126,6 +136,7 @@ class StingController
 
       return array("evaluate"=>!in_array("", $job), "newjob"=> $job);
     }
+
     public function clean($string)
     { //echo "cleaning";
       $pattern = '/[^ACDEFGHIKLMNPQRSTVWY]/';
@@ -134,4 +145,31 @@ class StingController
       # code...
       return $cleaned;
     }
+
+    public function buildSequence($valid_chars, $length)
+    {
+        // start with an empty random string
+        $random_string = "";
+
+        // count the number of chars in the valid chars string so we know how many choices we have
+        $num_valid_chars = strlen($valid_chars);
+
+        // repeat the steps until we've created a string of the right length
+        for ($i = 0; $i < $length; $i++)
+        {
+            // pick a random number from 1 up to the number of valid chars
+            $random_pick = mt_rand(1, $num_valid_chars);
+
+            // take the random character out of the string of valid chars
+            // subtract 1 from $random_pick because strings are indexed starting at 0, and we started picking at 1
+            $random_char = $valid_chars[$random_pick-1];
+
+            // add the randomly-chosen char onto the end of our string so far
+            $random_string .= $random_char;
+        }
+
+        // return our finished random string
+        return $random_string;
+    }
+
 }
