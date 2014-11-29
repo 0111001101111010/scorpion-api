@@ -5,7 +5,7 @@ use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
 use App\Services\StingService;
 
-date_default_timezone_set('America/Los_Angeles');
+date_default_timezone_set('America/New_York');
 
 class ScorpionServiceTest extends \PHPUnit_Framework_TestCase
 {
