@@ -8,11 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Sting REST API End point
  *
- * A *description*, that can span multiple lines, to go _in-depth_ into the details of this element
- * and to provide some background information or textual references.
+ * Controller for Sting Rest API End Points to create jobs
  *
- * @param string $myArgument With a *description* of this argument, these may also
- *    span multiple lines.
  *
  * @return void
  */
@@ -136,16 +133,30 @@ class StingController
 
       return array("evaluate"=>!in_array("", $job), "newjob"=> $job);
     }
-
-    public function clean($string)
+    /**
+         * Sequence response builder
+         *
+         * Stub for mocking protein sequence returns from C3Scorpion service
+         * @param string $input string raw input characters with FASTA allowed pattern
+         *
+         * @return void
+         */
+    public function clean($input)
     { //echo "cleaning";
       $pattern = '/[^ACDEFGHIKLMNPQRSTVWY]/';
-      $cleaned = preg_replace($pattern, "", $string);
-      //echo $cleaned;
+      $cleaned = preg_replace($pattern, "", $input);
+
       # code...
       return $cleaned;
     }
-
+/**
+     * Sequence response builder
+     *
+     * Stub for mocking protein sequence returns from C3Scorpion service
+     * @param string $valid_chars string containing all valid characters afforded
+     * @param
+     * @return void
+     */
     public function buildSequence($valid_chars, $length)
     {
         // start with an empty random string
