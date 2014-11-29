@@ -14,7 +14,7 @@
         <log type="tap"/>
     </logging>
     <testsuites>
-        <testsuite name="angularjs-silex-single-page-app Test Suite">
+        <testsuite name="Scorpion">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
