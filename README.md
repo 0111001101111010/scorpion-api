@@ -22,26 +22,30 @@ php -S 0:9001 -t web/
 
 
 ####What you will get
-The api will respond to
-
-  GET  ->   http://localhost:9001/api/v1/sting
-  POST ->   http://localhost:9001/api/v1/sting
-  PUT ->   http://localhost:9001/api/v1/sting/{id}
-  DELETE -> http://localhost:9001/api/v1/sting/{id}
+The api will respond to RESTful Commands
 
 Your request should have 'Content-Type: application/json' header.
 Your api is CORS compliant out of the box, so it's capable of cross-domain communication.
 
 Try with curl:
 
-  #GET
+#GET
+```
   curl http://localhost:9001/api/v1/sting -H 'Content-Type: application/json' -w "\n"
+```
 
-  #POST (insert)
+#POST (insert)
+```
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'title=Canine&seq=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&email= test%40cs.odu.edu&sanitize=yes&name=DogInfo' http://localhost:9001/api/v1/sting
+```
 
-  #PUT (update)
+
+#PUT (update)
+```
   curl -X PUT http://localhost:9001/api/v1/sting/1 -d '{"title":"test"}' -H 'Content-Type: application/json' -w "\n"
+```
 
-  #DELETE
+#DELETE
+```
   curl -X DELETE http://localhost:9001/api/v1/sting/1 -H 'Content-Type: application/json' -w "\n"
+```
