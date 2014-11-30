@@ -38,7 +38,7 @@ Try with curl:
   curl http://localhost:9001/api/v1/sting -H 'Content-Type: application/json' -w "\n"
 
   #POST (insert)
-  curl -X POST http://localhost:9001/api/v1/sting -d '{"title":"Canine!", "email": test@cs.odu.edu, "seq": "AA...AA", "name": "DogInfo", "sanitize":"no"}' -H 'Content-Type: application/json' -w "\n"
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'title=Canine&seq=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&email= test%40cs.odu.edu&sanitize=yes&name=DogInfo' http://localhost:9001/api/v1/sting
 
   #PUT (update)
   curl -X PUT http://localhost:9001/api/v1/sting/1 -d '{"title":"test"}' -H 'Content-Type: application/json' -w "\n"
