@@ -21,9 +21,16 @@ class StingService extends BaseService
         return $this->db->lastInsertId();
     }
 
-    function update($id, $note)
-    {
-        return $this->db->update('Sting', $note, ['id' => $id]);
+    function update($id, $job)
+     {
+        $jobcopy = $this->db->fetchAll("SELECT * FROM Sting where id={$id}")[0];
+        foreach ($job as $key => $value) {
+          if (!empty($value && $key !=="time")){
+            $jobcopy[$key]=$value;
+          }
+        }
+        $this->db->update('Sting', $jobcopy, ['id' => $id]);
+        return $jobcopy;
     }
 
     function delete($id)
