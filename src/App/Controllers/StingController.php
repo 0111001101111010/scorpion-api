@@ -94,8 +94,8 @@ class StingController
     public function update($id, Request $request)
     {
         $job = $this->getDataFromRequest($request);
-        $this->stingService->update($id, $job);
-        return new JsonResponse($job);
+        $update = $this->stingService->update($id, $job);
+        return new JsonResponse($update);
 
     }
 
