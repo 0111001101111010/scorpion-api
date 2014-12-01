@@ -38,6 +38,11 @@ class StingController
         return new JsonResponse($this->stingService->getAll());
     }
 
+    public function getOne($id, Request $request)
+    {
+        return new JsonResponse($this->stingService->getOne($id));
+    }
+
     public function save(Request $request)
     {
 

@@ -10,6 +10,11 @@ class StingService extends BaseService
         return $this->db->fetchAll("SELECT * FROM Sting");
     }
 
+    public function getOne($id)
+    {
+        return $this->db->fetchAll("SELECT * FROM Sting where id={$id}");
+    }
+
     function save($note)
     {
         $this->db->insert("Sting", $note);

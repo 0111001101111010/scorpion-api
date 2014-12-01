@@ -37,6 +37,7 @@ class RoutesLoader
 
         //Sting
         $api->get('sting', "sting.controller:getAll");
+        $api->get('/sting/{id}', "sting.controller:getOne");
         $api->post('sting', "sting.controller:save");
         $api->put('sting/{id}', "sting.controller:update");
         $api->delete('/sting/{id}', "sting.controller:delete");
