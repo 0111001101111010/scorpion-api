@@ -75,8 +75,8 @@ class StingController
         }
         else {
           //valid sequence
-          $mySeq= $this->buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($job["seq"])*3);
-          $mySeqSize = $this->buildSequence("5678", strlen($job["seq"])*3);
+          $mySeq= $this->buildSequence("ACDEFGHIKLMNPQRSTVWY", strlen($job["seq"]));
+          $mySeqSize = $this->buildSequence("56789", strlen($job["seq"]));
           $job["pred_seq"] = $mySeq;
           $job["pred_weights"] = $mySeqSize;
           $job["pred_status"]  = true;
