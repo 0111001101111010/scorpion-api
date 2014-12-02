@@ -53,3 +53,8 @@ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'title=Cani
 
 #ACCESS HTTP REST
 See examples in /examples for supported methods.
+- CURL
+- RUBY
+- PHP
+- PYTHON
+- NODE
