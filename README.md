@@ -49,3 +49,7 @@ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'title=Cani
 ```
   curl -X DELETE http://localhost:9001/api/v1/sting/1 -H 'Content-Type: application/json' -w "\n"
 ```
+
+
+#ACCESS HTTP REST
+See examples in /examples for supported methods.
