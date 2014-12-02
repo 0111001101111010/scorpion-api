@@ -28,6 +28,14 @@ urllib2.urlopen("http://localhost:9001/api/v1/sting").read()
 
 ```
 
+```php
+<?php
+
+$json = file_get_contents('http://localhost:9001/api/v1/sting');
+
+print $json;
+```
+
 ```ruby
 require "net/http"
 
