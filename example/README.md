@@ -11,6 +11,16 @@ Show supported HTTP RESTful conventions in various languages
 - PHP
 - RUBY
 
+```javascript
+var http = require('http');
+
+http.get("http://localhost:9001/api/v1/sting", function(res) {
+  console.log("Got response: " + res.statusCode);
+  }).on('error', function(e) {
+    console.log("Got error: " + e.message);
+    });
+```
+
 ```python
 import urllib2
 #GET
